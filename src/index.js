@@ -1,25 +1,23 @@
-import { initTodoListHandlers } from './scripts/todoList.js';
-import { renderTasks } from './scripts/renderer.js';
-import { getTasksList } from './scripts/tasksGateway.js';
-import { setItem } from './scripts/storage.js';
+import { initTodoListHandlers } from "./scripts/todoList.js";
+import { renderTasks } from "./scripts/renderer.js";
+import { getTasksList } from "./scripts/tasksGateway.js";
+import { setItem } from "./scripts/storage.js";
 
-import './index.scss'
+import "./index.scss";
 
-document.addEventListener('DOMContentLoaded', () => {
-    getTasksList()
-        .then(tasksList => {
-            setItem('tasksList', tasksList)
-            renderTasks();
-        });
+document.addEventListener("DOMContentLoaded", () => {
+  getTasksList().then((tasksList) => {
+    setItem("tasksList", tasksList);
+    renderTasks();
+  });
 
-    initTodoListHandlers();
+  initTodoListHandlers();
 });
 
-const onStarageChange = e => {
-    if (e.key === 'tasksList') {
-        renderTasks();
-    }
+const onStarageChange = (e) => {
+  if (e.key === "tasksList") {
+    renderTasks();
+  }
 };
 
-window.addEventListener('storage', onStarageChange);
-
+window.addEventListener("storage", onStarageChange);
