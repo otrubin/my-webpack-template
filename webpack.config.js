@@ -39,11 +39,14 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         loader: "file-loader",
         options: {
           outputPath: "img",
-          name: "[name].[ext]",
+          name(imgFullName) {
+            const dirRelativeToImg = path.relative(path.join(__dirname, 'src', 'img'), path.dirname(imgFullName));
+            return dirRelativeToImg ? `${dirRelativeToImg}/[name].[ext]` : '[name].[ext]';
+          },
         },
       },
     ],
